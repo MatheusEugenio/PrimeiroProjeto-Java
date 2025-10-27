@@ -1,4 +1,5 @@
 ### IntelliJ IDEA ###
+/GerenciadorDeTarefas2.0.iml
 /.idea
 out/
 !**/src/main/**/out/
