@@ -5,4 +5,4 @@
 treinar a idea de criação, edição, leitura e remoção (CRUD) de um 
 objeto, que nesse caso seria uma tarefa ou objetivo do dia a dia. 
 
-### (Ainda em andamento)
+Ainda em andamento...
