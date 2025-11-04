@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 public class Exec {
     public static void main(String[] args) {
-        Tarefa lavarcarro = new Tarefa("lavar o carro hoje", 1234567, "média");
 
         try (Scanner sc = new Scanner(System.in)) {
             System.out.print("Digite o local/diretório do arquivo do gerenciador: ");
