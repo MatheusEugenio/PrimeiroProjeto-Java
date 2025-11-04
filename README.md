@@ -3,6 +3,6 @@
 ## Objetivo do projeto:
 É um gerenciador de tarefas simples, com métodos simples para 
 treinar a idea de criação, edição, leitura e remoção (CRUD) de um 
-objeto, que nesse caso seria uma tarefa ou objetivo do dia a dia. 
+objeto e a manipulação de arquivos txt, com métodos de leitura e escrita.
 
 Ainda em andamento...
