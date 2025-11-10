@@ -81,15 +81,17 @@ public class AplicacaoDasAcoes implements Acoes{
 
     private void carregarTarefas(){
         try (BufferedReader leitorArq = new BufferedReader(new FileReader(this.caminhoArquivo))){
-            String linha;
 
-            while ((linha = leitorArq.readLine()) != null){
-                if (!linha.trim().isEmpty()){
-                    Tarefa tarefa = parseTarefa(linha);
-
-                    this.tarefas.add(tarefa);
-                }
-            }
+            leitorArq.lines()
+                    .filter(line -> !line.isEmpty())
+                    .map(line -> {
+                        try{
+                            return parseTarefa(line);
+                        } catch (Exception e) {
+                            throw new RuntimeException(e);
+                        }
+                    })
+                    .forEach(this.tarefas::add);
 
             System.out.println("Arquivo carregado com sucesso!");
         } catch (IOException e) {
