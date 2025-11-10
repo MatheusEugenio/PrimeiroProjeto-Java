@@ -1,5 +1,4 @@
 package GerenciadorDetasks;
-
 import java.util.Objects;
 
 public class Tarefa {

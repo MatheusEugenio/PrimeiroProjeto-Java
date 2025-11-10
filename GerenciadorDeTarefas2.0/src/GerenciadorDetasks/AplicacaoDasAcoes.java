@@ -56,9 +56,7 @@ public class AplicacaoDasAcoes implements Acoes{
             // Define a ordem lógica de prioridade e ordena a lista em Alta, Média e Baixa
             tarefasTemp.sort(Comparator.comparing(t -> ordemPrioridade.getOrDefault(t.getPrioridade() ,  99)));
 
-            for (Tarefa tare : tarefasTemp){
-                System.out.println(tare);
-            }
+            tarefasTemp.forEach(System.out::println);
 
         }catch (Exception e){
             System.out.println("Erro ao listar tarefas! "+e.getMessage());
@@ -74,14 +72,6 @@ public class AplicacaoDasAcoes implements Acoes{
 
     @Override
     public void marcarConcluido(long id) {
-        /*
-        for (Tarefa tar : tarefas){
-            if (tar.getId() == id) {
-                tar.setStatus(true);
-                break;
-            }
-        }
-         */
             tarefas.stream()
                 .filter(tarefa -> tarefa.getId() == id)
                 .forEach(t -> t.setStatus(true));
@@ -161,13 +151,17 @@ public class AplicacaoDasAcoes implements Acoes{
     private void salvarTarefas(){
         try(BufferedWriter arqListaTarefas = new BufferedWriter(new FileWriter(this.caminhoArquivo))){
 
-            for (Tarefa t: this.tarefas){
-                String tarefa = t.toString();
-
-                arqListaTarefas.write(tarefa);
-                arqListaTarefas.newLine();
-                arqListaTarefas.flush();
-            }
+            this.tarefas.stream()
+                    .map(Tarefa::toString)
+                    .forEach(tarefa -> {
+                        try {
+                            arqListaTarefas.write(tarefa);
+                            arqListaTarefas.newLine();
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    });
+            arqListaTarefas.flush();
 
         }catch (IOException e){
             System.out.println("Erro ao salvar o arquivo! "+e.getMessage());

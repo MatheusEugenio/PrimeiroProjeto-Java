@@ -27,6 +27,7 @@ public class Exec {
                     case 1:
                         gerenciador.listarTarefas();
                         break;
+
                     case 2:
                         System.out.println("Quantas tarefas deseja cadastrar?");
                         int quant = sc.nextInt();
@@ -53,6 +54,7 @@ public class Exec {
                             gerenciador.addTarefa(t);
                         }
                         break;
+
                     case 3:
                         System.out.println("=== Remoção de tarefa ===");
                         gerenciador.listarTarefas();
@@ -61,14 +63,15 @@ public class Exec {
                         gerenciador.removerTarefas(id);
                         System.out.println("==================================\n");
                         break;
+
                     case 4:
                         System.out.println("=== Marcar como concluído ===");
                         System.out.print("Digite o id da tarefa que deseja concluir: ");
                         int idRef = sc.nextInt();
                         gerenciador.marcarConcluido(idRef);
                         System.out.println("==================================\n");
-
                         break;
+
                 }
             } while (op != 0);
 
