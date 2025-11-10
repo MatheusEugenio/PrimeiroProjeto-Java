@@ -2,7 +2,6 @@ package GerenciadorDetasks;
 
 import java.io.*;
 import java.util.*;
-import java.util.concurrent.ExecutionException;
 
 public class AplicacaoDasAcoes implements Acoes{
 
