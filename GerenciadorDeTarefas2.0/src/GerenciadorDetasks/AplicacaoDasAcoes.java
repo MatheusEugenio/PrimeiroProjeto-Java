@@ -2,6 +2,7 @@ package GerenciadorDetasks;
 
 import java.io.*;
 import java.util.*;
+import java.util.concurrent.ExecutionException;
 
 public class AplicacaoDasAcoes implements Acoes{
 
@@ -32,16 +33,19 @@ public class AplicacaoDasAcoes implements Acoes{
         List<Tarefa> tarefasTemp = new ArrayList<>();
 
         try (BufferedReader leitorar = new BufferedReader(new FileReader(this.caminhoArquivo))){
-            String linha;
-            boolean veri = false;
 
-            while ((linha = leitorar.readLine()) != null){
-                Tarefa t = parseTarefa(linha);
-                tarefasTemp.add(t);
-                veri = true;
-            }
+            leitorar.lines()
+                    .filter(line ->  !line.isBlank())
+                    .map(line -> {
+                        try {
+                            return parseTarefa(line);
+                        }catch (Exception e){
+                            throw new RuntimeException(e);
+                        }
+                    })
+                    .forEach(tarefasTemp::add);
 
-            if (!veri){
+            if (tarefasTemp.isEmpty()){
                 System.out.println("Lista vazia!");
                 return;
             }
